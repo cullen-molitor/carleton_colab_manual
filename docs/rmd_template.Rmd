@@ -1,0 +1,27 @@
+---
+output: 
+  html_document:
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+if (!require(librarian)){
+  install.packages("librarian")
+  library(librarian)
+}
+librarian::shelf(
+  tidyverse,
+  tidymodels,
+  here, 
+  janitor
+)
+```
+
+
+
+
+
