@@ -1,0 +1,26 @@
+# Mission and Research Identity {#sec-mission}
+
+## Who we are
+
+The Carleton Lab is a research group in the Department of Agricultural & Resource Economics (ARE) at UC Berkeley, affiliated with the Center for Effective Global Action (CEGA). Our work sits at the intersection of climate science, environmental economics, and data science.
+
+## What we study
+
+Our research focuses on understanding how climate and environmental change affect human well-being — particularly in lower-income countries where impacts are often most severe and least studied. Core themes include:
+
+- **Climate–health attribution**: Quantifying the causal effects of temperature and precipitation on disease burden, mortality, and other health outcomes.
+- **Satellite-based machine learning for development**: Building scalable tools that translate satellite imagery into socioeconomic and environmental indicators useful for policy.
+- **Capacity building**: Partnering with governments and institutions in sub-Saharan Africa to make research tools accessible and locally maintained.
+
+## Our approach
+
+We believe that rigorous empirical research can — and should — directly inform policy. This means we invest heavily in:
+
+- Transparent, reproducible computational pipelines
+- Open-source tools and public datasets where possible
+- Long-term partnerships with the people who will use our results
+- Training the next generation of researchers in data science and applied economics
+
+## Principal Investigator
+
+**Tamma Carleton** is an Assistant Professor in ARE at UC Berkeley. Her research uses large-scale data and econometric methods to measure the social costs of environmental change. You can learn more on her [faculty page](https://www.tammacarleton.com/).

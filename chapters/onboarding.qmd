@@ -1,0 +1,48 @@
+# Onboarding {#sec-onboarding}
+
+Welcome to the lab! This chapter walks you through everything you need to get set up. Most of these items can be completed in your first week.
+
+## Administrative setup
+
+- [ ] Complete UC Berkeley employment paperwork (HR will contact you)
+- [ ] Obtain your CalNet ID and set up Berkeley email
+- [ ] Get your Cal 1 Card (campus ID)
+- [ ] Enroll in benefits (if applicable)
+- [ ] Get building access — contact the ARE department for office and building keys
+
+## Lab accounts and tools
+
+- [ ] Join the lab **Slack workspace** — ask the lab manager for an invite
+- [ ] Get access to the lab **Google Shared Drive**
+- [ ] Get added to the lab **GitHub organization** — create a GitHub account if you do not have one
+- [ ] Set up **Zotero** and join the lab's shared reference library
+- [ ] Install **R**, **RStudio** or **Positron**, and/or **Python** on your local machine (see @sec-tools)
+
+## Computing setup
+
+If your work involves Savio (most lab members will use it at some point):
+
+- [ ] Request a BRC account and join `fc_carleton2025` and `co_carleton` (see @sec-hpc-overview)
+- [ ] Set up two-factor authentication for Savio
+- [ ] Configure SSH access and Remote SSH in your editor (see @sec-remote-ssh)
+- [ ] Test that you can submit a job and run code inside a container (see @sec-containers)
+- [ ] Install [Globus Connect](https://www.globus.org/) for file transfers
+
+## Getting oriented
+
+- [ ] Read this manual — especially @sec-values, @sec-expectations, and @sec-data-code
+- [ ] Review the lab's active projects and identify where you will contribute
+- [ ] Schedule a one-on-one with Tamma to discuss your role, goals, and initial tasks
+- [ ] Introduce yourself in the **#general** Slack channel
+- [ ] Attend your first lab meeting
+
+## Berkeley resources
+
+A non-exhaustive list of campus resources that may be useful:
+
+- [D-Lab](https://dlab.berkeley.edu/) — workshops on data science, statistics, and programming
+- [Berkeley Institute for Data Science (BIDS)](https://bids.berkeley.edu/) — talks, working groups, and community
+- [Research IT](https://research-it.berkeley.edu/) — support for Savio and other research computing
+- [University Health Services](https://uhs.berkeley.edu/) — medical, counseling, and wellness services
+- [Recreational Sports Facility (RSF)](https://recsports.berkeley.edu/) — gym, pool, and fitness classes
+- [Bear Transit and AC Transit](https://pt.berkeley.edu/) — campus and regional transportation

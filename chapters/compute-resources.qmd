@@ -1,0 +1,79 @@
+# Compute Resources {#sec-compute}
+
+## Job submission guidelines
+
+- Use **job arrays** for batches of similar tasks to reduce scheduler load.
+- Request resources accurately:
+  - **Memory:** Start with 8–16 GB per CPU and adjust based on monitoring.
+  - **Time:** Add a 20% buffer to your expected runtime.
+  - **CPUs:** Consider parallel efficiency before requesting all 56 cores on a node.
+
+::: {.callout-warning}
+Check the **#computing** Slack channel before submitting a job that uses more than half of the lab's condo allocation (112 CPUs / 1 TB RAM).
+:::
+
+### Checking current usage
+
+To see what is currently running on the lab's allocation:
+
+```bash
+squeue -A co_carleton \
+  -o "%.18i %.9P %.8j %.8u %.8T %.10M %.9l %.6D %R %C %m"
+```
+
+## Software environments
+
+### Python
+
+Shared Python environments live in the project directory:
+
+```
+/global/scratch/projects/co_carleton/carleton_colab/software/
+├── base_env/       # Common packages for all users
+├── genomics_env/   # Domain-specific environment
+└── ml_env/         # Machine learning packages
+```
+
+### Containers
+
+Apptainer (formerly Singularity) containers are stored in:
+
+```
+/global/scratch/projects/co_carleton/carleton_colab/software/apptainers/
+```
+
+See @sec-containers for detailed instructions on building and using containers.
+
+## Monitoring and maintenance
+
+### Storage monitoring
+
+- Quarterly checks of storage usage per user and project.
+- Yearly cleanup reminders for scratch and project spaces.
+- Yearly review of project storage organization.
+
+### Performance tracking
+
+- Monitor job efficiency (CPU and memory utilization).
+- Track queue wait times.
+- Document optimal parameters for common workflows.
+
+## User responsibilities
+
+### Regular cleanup
+
+- Remove intermediate files from scratch after jobs complete.
+- Archive completed projects to free active storage.
+- Delete duplicate data.
+
+### Documentation
+
+- Maintain project README files.
+- Update the shared dataset registry.
+- Document custom software installations.
+
+### Communication
+
+- Notify lab members before large data transfers.
+- Coordinate shared resource usage around deadlines.
+- Report issues promptly to HPC support.

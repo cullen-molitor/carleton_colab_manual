@@ -1,0 +1,24 @@
+# Code of Conduct {#sec-code-of-conduct}
+
+All lab members are expected to abide by the [UC Berkeley Principles of Community](https://diversity.berkeley.edu/principles-community) and the university's policies on harassment, discrimination, and professional conduct.
+
+## Summary
+
+We are committed to creating a harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion, or technical experience. We do not tolerate harassment in any form.
+
+## Expectations
+
+- Treat all lab members, collaborators, and partners with respect and professionalism.
+- Engage in constructive criticism of ideas — not people.
+- Be mindful of the power dynamics inherent in academic settings and act to reduce their negative effects.
+- Respect confidentiality. Preliminary results, draft manuscripts, and partner data should not be shared outside the lab without explicit permission.
+
+## Reporting
+
+If you experience or witness conduct that violates this code, you are encouraged to:
+
+1. Speak directly to the person involved, if you feel comfortable doing so.
+2. Talk to Tamma or the lab manager.
+3. Contact UC Berkeley's [Office for the Prevention of Harassment and Discrimination (OPHD)](https://ophd.berkeley.edu/).
+
+Reports will be handled with discretion. Retaliation against anyone who makes a good-faith report is prohibited.

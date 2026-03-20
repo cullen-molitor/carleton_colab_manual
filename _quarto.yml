@@ -1,0 +1,70 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Carleton Lab Manual"
+  subtitle: "UC Berkeley · Agricultural & Resource Economics · CEGA"
+  author:
+    - name: "Cullen Molitor"
+      affiliation: "CEGA, UC Berkeley"
+    - name: "Tamma Carleton"
+      affiliation: "ARE, UC Berkeley"
+  date: today
+  date-format: "MMMM YYYY"
+
+  chapters:
+    - index.qmd
+
+    - part: "About the Lab"
+      chapters:
+        - chapters/mission.qmd
+        - chapters/values-and-culture.qmd
+        - chapters/code-of-conduct.qmd
+
+    - part: "Working in the Lab"
+      chapters:
+        - chapters/expectations.qmd
+        - chapters/onboarding.qmd
+        - chapters/offboarding.qmd
+
+    - part: "Research Workflow"
+      chapters:
+        - chapters/project-management.qmd
+        - chapters/data-and-code-practices.qmd
+        - chapters/tools-and-platforms.qmd
+        - chapters/writing-and-publication.qmd
+
+    - part: "High Performance Computing"
+      chapters:
+        - chapters/hpc-overview.qmd
+        - chapters/storage-and-data.qmd
+        - chapters/compute-resources.qmd
+        - chapters/remote-ssh.qmd
+        - chapters/containers.qmd
+
+    - part: "Administrative"
+      chapters:
+        - chapters/housekeeping.qmd
+
+    - references.qmd
+
+  sidebar:
+    collapse-level: 2
+
+  search: true
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    highlight-style: github
+    css: styles.css

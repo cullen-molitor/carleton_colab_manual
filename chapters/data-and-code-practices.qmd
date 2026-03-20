@@ -1,0 +1,99 @@
+# Data and Code Practices {#sec-data-code}
+
+Reproducibility is a core value of the lab (see @sec-values). This chapter lays out the standards we follow for data management, version control, and code quality.
+
+## Version control with Git and GitHub
+
+All analysis code lives in Git repositories hosted on the lab's GitHub organization. The basics:
+
+- **Commit often** with clear, descriptive messages. A good commit message explains *why*, not just *what*.
+- **Use branches** for new features or analyses. Merge into `main` via pull request when the work is ready.
+- **Never commit data** to a Git repository. Use `.gitignore` to exclude data files, outputs, and large binaries. If you need to track a large file, use [Git LFS](https://git-lfs.com/).
+- **Never commit credentials**, API keys, or passwords. If you accidentally do, rotate the credential immediately.
+
+### Repository structure
+
+We do not enforce a single template, but a typical project repository looks something like:
+
+```
+project-name/
+├── README.md
+├── .gitignore
+├── data/               # Symlink to Savio project storage (not tracked)
+├── scripts/
+│   ├── 01_clean.R
+│   ├── 02_estimate.R
+│   └── 03_figures.R
+├── output/
+│   ├── figures/
+│   └── tables/
+├── docs/               # Notes, methods documentation
+└── slurm/              # Job submission scripts
+```
+
+### Code review
+
+For larger or shared projects, use pull requests and ask a lab mate to review your code before merging. Code review is not about finding fault — it is about catching bugs, improving clarity, and sharing knowledge.
+
+## Coding standards
+
+### R
+
+R is our primary language for econometric and geospatial analysis. Conventions:
+
+- Use the [tidyverse style guide](https://style.tidyverse.org/) as a baseline.
+- Prefer `data.table` for performance-critical operations on large datasets.
+- Use `here::here()` for file paths — never hardcode absolute paths in scripts.
+- Use `library()` calls at the top of every script, not scattered throughout.
+- Name scripts with a numbered prefix that reflects execution order (e.g., `B01_Predict_Prevalence.R`).
+
+### Python
+
+For machine learning, satellite image processing, and some data engineering tasks:
+
+- Follow [PEP 8](https://peps.python.org/pep-0008/).
+- Use virtual environments or conda environments — never install into the system Python.
+- Pin dependencies in a `requirements.txt` or `environment.yml`.
+
+### Stata
+
+Some projects (particularly replications or collaborations with economists) use Stata:
+
+- Use `.do` files with clear headers describing purpose, inputs, and outputs.
+- Set paths at the top of the master `.do` file using globals.
+- Store logs for all estimation runs.
+
+## Data management
+
+### Principles
+
+- **Raw data is sacred.** Never modify raw data files. All transformations should happen in code, producing processed outputs in a separate directory.
+- **Document everything.** Every dataset should have a README describing its source, collection date, processing steps, file formats, and naming conventions.
+- **Deduplicate.** Before downloading a dataset to Savio, check the **#computing** Slack channel to see if someone already has it (see @sec-project-storage).
+
+### File naming
+
+Use consistent, descriptive file names. Avoid spaces and special characters. Good patterns:
+
+- `era5_daily_temperature_2000_2020.nc`
+- `pfpr_africa_2x2_degree.feather`
+- `bootstrap_results_iter_0001.feather`
+
+### Sensitive data
+
+Some projects involve data covered by data use agreements (DUAs) or institutional review board (IRB) protocols. If you are working with sensitive data:
+
+- Store it only in approved locations (see @sec-project-storage for secure storage options on Savio).
+- Do not share it on Slack, email, or Google Drive unless explicitly permitted.
+- Follow the terms of the DUA exactly — when in doubt, ask Tamma.
+
+## Reproducibility checklist
+
+Before sharing results or submitting a paper, verify:
+
+- [ ] The full pipeline runs end-to-end from raw data to final outputs.
+- [ ] All dependencies (R packages, Python libraries, system tools) are documented with versions.
+- [ ] Random seeds are set for any stochastic processes.
+- [ ] File paths use `here()` or equivalent — no hardcoded absolute paths.
+- [ ] A README explains how to reproduce the results.
+- [ ] Intermediate files can be regenerated from code (they do not need to be archived).

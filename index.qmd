@@ -1,0 +1,31 @@
+# Welcome {.unnumbered}
+
+Welcome to the Carleton Lab manual! This is the central reference for how our group operates — from day-to-day logistics and research workflows to high-performance computing on Savio. Whether you are a new RA, a visiting PhD student, or a long-time collaborator, this guide is meant to help you get oriented and work effectively.
+
+Our group sits within the Department of Agricultural & Resource Economics at UC Berkeley and is affiliated with the Center for Effective Global Action (CEGA). We study climate impacts, health, and environmental economics, with a particular emphasis on building data-driven tools that are useful to policymakers in lower-income countries.
+
+## How to use this manual
+
+The manual is organized into several parts:
+
+- **About the Lab** covers who we are, what we value, and the norms we hold each other to.
+- **Working in the Lab** walks through what to expect as a lab member, from onboarding through offboarding.
+- **Research Workflow** documents how we manage projects, write code, handle data, and publish.
+- **High Performance Computing** is a deep dive into Berkeley's Savio cluster — accounts, storage, job submission, remote development, and containers.
+- **Administrative** covers the practical logistics of timekeeping, travel, and reimbursements.
+
+This is a living document. If something is wrong or missing, open a pull request or post in the **#computing** Slack channel.
+
+## Quick links
+
+| Resource | Link |
+|----------|------|
+| Lab website | *TODO* |
+| Lab GitHub organization | *TODO* |
+| Lab Slack workspace | *TODO* |
+| Savio documentation | <https://docs-research-it.berkeley.edu/services/high-performance-computing/overview/> |
+| CEGA website | <https://cega.berkeley.edu/> |
+
+## Acknowledgments
+
+This manual is inspired by the [emLab Manual](https://emlab-ucsb.github.io/emlab-manual/) at UC Santa Barbara and the [Faylab Lab Manual](https://thefaylab.github.io/lab-manual/) at UMass Dartmouth. We appreciate their commitment to open science and transparency in research group operations.

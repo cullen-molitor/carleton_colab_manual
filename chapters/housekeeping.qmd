@@ -1,0 +1,56 @@
+# Housekeeping {#sec-housekeeping}
+
+## Timekeeping
+
+Research staff paid on an hourly or biweekly basis must submit timesheets through UC Berkeley's CalTime system. Submit your timesheet by the posted deadline each pay period. If you are unsure about your timekeeping obligations, check with the ARE department administrator.
+
+Salaried and exempt employees do not submit timesheets but should track their time for grant reporting purposes when asked.
+
+## Vacation and time off
+
+UC Berkeley has generous leave policies. The specifics depend on your appointment type (career staff, limited-appointment, student, postdoc), but in general:
+
+- **Communicate in advance.** Let Tamma and your project team know before taking time off, ideally with at least a week's notice for longer absences.
+- **Update your calendar.** Block off vacation days on your Google Calendar so people know you are unavailable.
+- **Set up an out-of-office reply** on email and a Slack status for extended absences.
+- **No guilt.** Taking time off is important and expected. Do not apologize for it.
+
+For questions about specific leave policies (sick leave, family leave, jury duty), contact the ARE department administrator or UC Berkeley Human Resources.
+
+## Travel
+
+### Conferences and fieldwork
+
+Lab members are encouraged to present at conferences and, where relevant, participate in fieldwork with our partners. Before booking travel:
+
+1. Discuss the trip with Tamma to confirm it is supported and identify the appropriate funding source.
+2. Book flights and hotels in compliance with UC travel policies. Use the UC travel portal when possible.
+3. Keep all receipts.
+
+### Reimbursements
+
+UC Berkeley uses **Concur** for travel and expense reimbursements. The general process:
+
+1. Complete your trip.
+2. Submit an expense report in Concur within 45 days, attaching all receipts.
+3. The department administrator will review and approve.
+
+::: {.callout-tip}
+Reimbursements are faster if you submit them promptly. Waiting months makes it harder to remember details and increases the chance of missing receipts.
+:::
+
+### Per diem and meals
+
+When traveling on university business, you may be eligible for per diem. Rates depend on the destination and are set by UC policy. Check the [UC travel policy website](https://policy.ucop.edu/doc/3420365/BFB-G-28) for current rates.
+
+## Office and workspace
+
+The lab's physical space is in the ARE department. Desk assignments and office access are coordinated by the department administrator. If you need equipment (monitor, keyboard, etc.), ask the lab manager.
+
+## Purchasing and supply requests
+
+Most purchases go through the department and require a funding source (chartstring). Do not buy items on your personal card expecting reimbursement without prior approval.
+
+For everyday requests — office supplies, shared snacks, coffee, kitchen items, printer toner, etc. — submit a request through the **[Lab Supply Request Form](https://docs.google.com/forms/d/e/PLACEHOLDER/viewform)**. The lab manager checks the form regularly and will coordinate purchasing or let you know if there are questions.
+
+For larger purchases (software licenses, cloud compute credits, equipment, books), talk to Tamma or the lab manager directly before submitting anything. These typically require additional approval and a specific funding source.
