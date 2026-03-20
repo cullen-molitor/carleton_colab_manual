@@ -1,0 +1,83 @@
+# Tools and Platforms {#sec-tools}
+
+This chapter covers the software and services the lab uses for communication, collaboration, and research. For HPC-specific tools (Savio, Apptainer, SLURM), see the [High Performance Computing](#sec-hpc-overview) section.
+
+## Slack
+
+Slack is our primary communication tool. The workspace is organized into channels:
+
+| Channel | Purpose |
+|---------|---------|
+| `#general` | Lab-wide announcements and casual conversation |
+| `#computing` | Questions about Savio, software, debugging, and data |
+| `#papers` | Interesting papers, reading group discussions |
+| `#proj-<name>` | Project-specific channels (created as needed) |
+| `#random` | Off-topic, social, fun |
+
+### Norms
+
+- Use threads to keep channels readable.
+- Use `@here` and `@channel` sparingly — only when something is truly time-sensitive.
+- It is okay to message on evenings or weekends if that is when you are working, but do not expect a response until the next business day.
+- Search before asking — someone may have already answered your question.
+
+## Google Workspace
+
+### Shared Drive
+
+The lab maintains a Google Shared Drive for non-code documents: meeting notes, slide decks, literature reviews, grant proposals, and partner communications. The recommended structure is:
+
+```
+Carleton Lab/
+├── Admin/
+├── Grants/
+├── Lab meetings/
+├── Projects/
+│   └── <project-name>/
+│       ├── Literature/
+│       ├── Presentations/
+│       └── Notes/
+└── Templates/
+```
+
+### Calendar
+
+Use your Berkeley Google Calendar for scheduling. When booking meetings with lab members, check their calendar availability first. Tamma's calendar is maintained by her — reach out via Slack or email to schedule time.
+
+## GitHub
+
+All analysis code is hosted on the lab's GitHub organization. See @sec-data-code for conventions around repositories, branching, and code review.
+
+If you are new to Git, the following resources are excellent starting points:
+
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/) by Jenny Bryan
+- [D-Lab Git Fundamentals](https://github.com/dlab-berkeley/git-fundamentals)
+- [Software Carpentry Git lesson](https://swcarpentry.github.io/git-novice/)
+
+## Reference management
+
+We use [Zotero](https://www.zotero.org/) for managing references. The lab has a shared Zotero library. To get started:
+
+1. Create a free Zotero account.
+2. Install the Zotero desktop app and the browser connector.
+3. Ask the lab manager to invite you to the shared library.
+
+Zotero integrates with Google Docs, Word, and can export `.bib` files for use with LaTeX and Quarto.
+
+## Writing tools
+
+Lab members use a variety of writing tools depending on the project:
+
+- **LaTeX / Overleaf** for journal submissions and working papers. Most economics journals expect LaTeX-formatted manuscripts.
+- **Quarto** for reproducible reports, presentations, and documentation (like this manual).
+- **Google Docs** for early-stage drafts, collaborative editing with non-technical partners, and internal memos.
+
+## IDEs and editors
+
+Use whatever editor you are most productive in. Common choices in the lab:
+
+- **Positron** — a data-science-focused IDE from Posit (makers of RStudio), with strong R and Python support and an integrated terminal. Works well with Remote SSH for Savio.
+- **RStudio** — the classic choice for R-heavy workflows.
+- **VS Code** — highly extensible, excellent for Python, and supports Remote SSH natively.
+
+For connecting any of these to Savio, see @sec-remote-ssh.

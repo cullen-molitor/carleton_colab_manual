@@ -1,0 +1,154 @@
+# Connecting with Remote SSH {#sec-remote-ssh}
+
+This chapter walks through connecting to Savio from VS Code or Positron using the Remote SSH extension. Once configured, you can develop interactively on a compute node just as you would on your local machine.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+1. A BRC account with access to the Carleton group projects (see @sec-hpc-overview).
+2. A PIN and a multifactor authentication (MFA) app (Duo, Authy, etc.) linked to BRC.
+3. The [`lrc-scripts`](https://github.com/lbnl-science-it/lrc-scripts.git) repository cloned to your local machine.
+4. VS Code or Positron with the **Remote - SSH** extension installed.
+
+## One-time setup
+
+### Step 1: Create an SSH certificate alias {#sec-cert-alias}
+
+The `lrc-scripts` repo includes a helper script that requests a 12-hour SSH certificate from Savio. Creating a shell alias saves you from typing the full path each time.
+
+Open your shell's run-commands file — `~/.zshrc` for Zsh on macOS, `~/.bashrc` for Bash — and add:
+
+```bash
+alias cert="~/path/to/lrc-scripts/request_cert.sh -p brc"
+```
+
+Update the path to wherever you cloned the repo. Restart your terminal, then run:
+
+```bash
+cert
+```
+
+You will be prompted for:
+
+1. Your BRC username
+2. Your 4-digit PIN (not the MFA code)
+3. Your 6-digit MFA code from the authenticator app
+
+If successful, you can now SSH into Savio without a password for the next 12 hours.
+
+Test it:
+
+```bash
+ssh your_username@hpc.brc.berkeley.edu
+```
+
+### Step 2: Configure SSH hosts {#sec-ssh-config}
+
+Edit (or create) `~/.ssh/config` and add the following entries. Replace `USER_NAME` with your BRC username.
+
+```{.bash filename="~/.ssh/config"}
+Host savio
+    LogLevel QUIET
+    User USER_NAME
+    HostName hpc.brc.berkeley.edu
+    IdentityFile ~/.ssh/ssh_certs/brc_cert
+    ForwardAgent yes
+    IdentitiesOnly yes
+
+Host savio-compute
+    LogLevel QUIET
+    StrictHostKeyChecking no
+    ProxyJump savio
+    IdentityFile ~/.ssh/ssh_certs/brc_cert
+    HostName n0029.savio4
+    User USER_NAME
+
+Host savio-ln
+    User USER_NAME
+    HostName hpc.brc.berkeley.edu
+    IdentityFile ~/.ssh/ssh_certs/brc_cert
+```
+
+The three entries serve different purposes:
+
+- **`savio`** — General-purpose entry used as a proxy jump target.
+- **`savio-compute`** — Points to a specific compute node (you will update `HostName` each session).
+- **`savio-ln`** — Connects directly to the login node for quick administrative tasks.
+
+Verify login-node access:
+
+```bash
+ssh savio-ln
+```
+
+### Step 3: Create a compute-node request script {#sec-get-compute}
+
+::: {.callout-important}
+Never run computationally intensive work on the login node. It is a shared resource and heavy usage affects all users.
+:::
+
+On the Savio login node, create a helper script:
+
+```{.bash filename="~/scripts/get_compute.sh"}
+#!/bin/bash
+salloc -A co_carleton \
+       -p savio4_htc \
+       --qos=carleton_htc4_normal \
+       -t 08:00:00 \
+       -c 12 \
+       --no-shell
+```
+
+Make it executable and alias it:
+
+```bash
+chmod u+x ~/scripts/get_compute.sh
+```
+
+Add to your `~/.bashrc` on Savio:
+
+```bash
+alias compute="~/scripts/get_compute.sh"
+```
+
+## Daily workflow {#sec-daily-workflow}
+
+Once everything is configured, the daily connection process is:
+
+### 1. Get a certificate
+
+```bash
+cert
+# Enter username, PIN, MFA code
+```
+
+### 2. Request a compute node
+
+```bash
+ssh savio-ln
+compute
+```
+
+SLURM will print the name of the node you are assigned (e.g., `n0050.savio4`). Copy this.
+
+### 3. Update your SSH config
+
+Paste the node name into the `HostName` field of the `savio-compute` entry in your **local** `~/.ssh/config`:
+
+```bash
+Host savio-compute
+    ...
+    HostName n0050.savio4   # <-- update this each session
+    ...
+```
+
+### 4. Connect from your editor
+
+Open VS Code or Positron, find the **Remote SSH** panel, and select **savio-compute**. The extension tunnels through the login node (via `ProxyJump savio`) and drops you onto the compute node.
+
+You may be prompted for your PIN + MFA one more time — this is normal.
+
+::: {.callout-tip}
+Once connected, open the integrated terminal. You now have a full interactive session on a compute node with the resources you requested in `get_compute.sh`.
+:::

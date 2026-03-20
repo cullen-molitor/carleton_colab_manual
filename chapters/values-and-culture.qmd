@@ -1,0 +1,41 @@
+# Values and Culture {#sec-values}
+
+## Lab values
+
+Our work depends on trust, rigor, and mutual respect. These values guide how we interact with each other, our collaborators, and the broader research community.
+
+### Scientific integrity
+
+We prioritize getting it right over getting it published. This means pre-specifying analyses where appropriate, reporting null results honestly, stress-testing our own findings, and welcoming scrutiny from others.
+
+### Reproducibility
+
+Every result we produce should be reproducible by someone else using our code and data. This is not just good practice — it is a responsibility to the communities whose policy decisions may depend on our work.
+
+### Collaboration over competition
+
+We succeed as a group. Lab members are encouraged to share knowledge freely, help each other debug code, co-author across projects, and celebrate each other's wins.
+
+### Inclusion and respect
+
+We are committed to building a lab where people of all backgrounds feel welcome and valued. Diverse perspectives make our science better.
+
+### Sustainability
+
+We work on environmental problems, and we should be mindful of our own footprint — from the energy cost of computation to the carbon cost of travel.
+
+## Lab culture
+
+### Communication norms
+
+- **Slack** is the primary channel for day-to-day communication. Use it liberally — asking questions is always encouraged.
+- **Email** is for formal or external communications. For internal conversations, prefer Slack.
+- Respond to messages within one business day when possible. If you need more time, acknowledge receipt and give a timeline.
+
+### Work–life balance
+
+Research is a marathon, not a sprint. We do not expect or encourage working nights or weekends as a norm. If you find yourself consistently overloaded, talk to Tamma or the lab manager — we will find a solution together.
+
+### Intellectual generosity
+
+When someone shares an idea, a draft, or a piece of code, engage with it constructively. Lead with what works before suggesting changes. Give credit generously.

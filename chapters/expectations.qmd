@@ -1,0 +1,47 @@
+# Expectations {#sec-expectations}
+
+## Work environment
+
+Our group includes a mix of RAs, PhD students, postdocs, and visiting researchers. The degree of in-person presence expected varies by role:
+
+- **Research staff (RAs, data scientists):** Generally expected to be available during regular business hours. Remote work is fine, but coordinate with your project team so people know how to reach you.
+- **PhD students:** Your schedule is your own. That said, being present for lab meetings, seminars, and collaborative work sessions is important.
+- **Postdocs and visitors:** Discuss a schedule with Tamma that works for both your research and the group.
+
+Regardless of role, everyone should be reachable on Slack during working hours and responsive within a business day.
+
+## Meetings and events
+
+### Lab meetings
+
+We hold a regular lab meeting — typically weekly during the academic year. These rotate between research presentations (practice talks, work-in-progress), paper discussions, and skill-share sessions (e.g., a new tool, a coding technique, a methods primer). Attendance is expected for all lab members.
+
+### One-on-ones
+
+Each lab member meets regularly with Tamma (typically biweekly or monthly, depending on the role). These meetings are your time — come prepared with updates, questions, and anything you need help with.
+
+### Seminars and workshops
+
+Berkeley has an extraordinary density of seminars in economics, data science, and environmental science. Lab members are encouraged to attend talks outside their immediate area. Some recommended series include:
+
+- ARE seminar series
+- CEGA research seminars
+- Berkeley Institute for Data Science (BIDS) events
+- D-Lab workshops
+
+## Time management
+
+Research is open-ended by nature, and it can be hard to know when to stop working on something. A few principles:
+
+- **Set weekly goals.** At the start of each week, identify 2–3 concrete deliverables you want to complete.
+- **Communicate blockers early.** If you are stuck, say so. A 5-minute Slack message can save days of spinning.
+- **Protect deep work time.** Block off chunks of uninterrupted time for coding, writing, and thinking. It is okay to close Slack and email during these blocks.
+
+## Project roles
+
+Most lab projects involve some combination of the following roles. One person may wear multiple hats, but it helps to be explicit about who is responsible for what:
+
+- **PI**: Sets the research direction, provides feedback, secures funding.
+- **Project lead**: Day-to-day ownership of the project — managing timelines, coordinating across collaborators, and making sure things move forward.
+- **Analyst / data scientist**: Builds and maintains the computational pipeline, runs analyses, produces figures and tables.
+- **Research assistant**: Supports data collection, literature review, and specific analytic tasks.

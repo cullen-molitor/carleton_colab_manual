@@ -1,0 +1,246 @@
+# Containers {#sec-containers}
+
+Savio does not allow users to install system-level libraries or run Docker directly. Instead, we build Docker images locally (or in CI), push them to a registry, and pull them on Savio as Apptainer (formerly Singularity) images. This gives us full control over our software stack while respecting the shared HPC environment.
+
+## Overview of the workflow
+
+```
+Local machine                    Docker Hub              Savio
+─────────────                    ──────────              ─────
+docker build → docker push  →  registry  →  apptainer pull → .sif file
+```
+
+1. **Build** a Docker image on your laptop or a CI runner.
+2. **Push** it to Docker Hub (or another registry).
+3. **Pull** it on Savio with `apptainer pull`, which converts it to a `.sif` file.
+4. **Run** R sessions, scripts, or SLURM jobs inside the container.
+
+## Building a Docker image
+
+### Example Dockerfile
+
+Below is the Dockerfile the lab uses for the climate–malaria project. It starts from the [`rocker/geospatial`](https://rocker-project.org/) base image, which ships with R, `sf`, `terra`, `raster`, `rgdal`, `ncdf4`, and all their system dependencies (GDAL, PROJ, GEOS, netCDF, HDF5).
+
+```{.dockerfile filename="Dockerfile"}
+# -----------------------------------------------------------------
+# R 4.2.3 + rgdal + velox + tidyverse + HPC utilities
+#
+# Build:   docker build --platform linux/amd64 -t cmolitor/r-malaria-cru:4.2.3 .
+# Push:    docker push cmolitor/r-malaria-cru:4.2.3
+# Savio:   apptainer pull docker://cmolitor/r-malaria-cru:4.2.3
+# -----------------------------------------------------------------
+FROM rocker/geospatial:4.2.3
+
+# System deps for velox (Boost geometry headers)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libboost-all-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# CRAN packages (pinned to a Posit snapshot for reproducibility)
+RUN R -e " \
+    options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/2023-04-20')); \
+    install.packages(c( \
+        'tidyverse',     \
+        'here',          \
+        'reshape',       \
+        'data.table',    \
+        'feather',       \
+        'progressr',     \
+        'future.apply'   \
+    )) \
+"
+
+# velox — archived on CRAN, so install from GitHub
+RUN R -e " \
+    options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/2023-04-20')); \
+    install.packages('remotes'); \
+    remotes::install_github('hunzikp/velox', upgrade = 'never') \
+"
+
+# Smoke test — fail the build if anything is missing
+RUN R -e " \
+    library(rgdal); library(velox); library(ncdf4); library(raster); \
+    library(sp); library(sf); library(tidyverse); library(here); \
+    library(reshape); library(data.table); library(feather); \
+    library(progressr); library(future.apply); \
+    cat('All packages OK\n') \
+"
+
+CMD ["R"]
+```
+
+### Build and push
+
+You must build for `linux/amd64` since Savio runs x86_64 Linux, even if your laptop is Apple Silicon:
+
+```bash
+docker build --platform linux/amd64 -t cmolitor/r-malaria-cru:4.2.3 .
+docker push cmolitor/r-malaria-cru:4.2.3
+```
+
+::: {.callout-tip}
+Pin your image to a tag (e.g., `4.2.3`) rather than using `latest`. This makes it easy to reproduce results months later.
+:::
+
+## Pulling the image on Savio
+
+On Savio, convert the Docker image to an Apptainer `.sif` file:
+
+```bash
+apptainer pull docker://cmolitor/r-malaria-cru:4.2.3
+```
+
+Move the resulting `.sif` file to the shared container directory so other lab members can use it:
+
+```bash
+mv r-malaria-cru_4.2.3.sif \
+    /global/scratch/projects/co_carleton/carleton_colab/software/apptainers/
+```
+
+## Running containers on Savio
+
+All examples below assume the `.sif` file lives at:
+
+```
+/global/scratch/projects/co_carleton/carleton_colab/software/apptainers/r-malaria-cru_4.2.3.sif
+```
+
+For readability, we define a shell variable:
+
+```bash
+SIF=/global/scratch/projects/co_carleton/carleton_colab/software/apptainers/r-malaria-cru_4.2.3.sif
+```
+
+### Key Apptainer flags
+
+| Flag | Purpose |
+|------|---------|
+| `--cleanenv` | Do not pass host environment variables into the container. Prevents library conflicts. |
+| `--contain` | Isolate the container from the host filesystem (only explicitly bound paths are visible). |
+| `--bind A:B` | Mount host path `A` at container path `B` (or at `A` if `B` is omitted). |
+| `--pwd /path` | Set the working directory inside the container. |
+
+### Interactive R session {#sec-interactive-r}
+
+First request a compute node (see @sec-daily-workflow), then:
+
+```bash
+apptainer exec --cleanenv --contain \
+    --bind /global/scratch/projects/co_carleton:/global/scratch/projects/co_carleton \
+    --bind /global/home/users/$USER/falciparum:/global/home/users/$USER/falciparum \
+    --pwd /global/home/users/$USER/falciparum \
+    $SIF R
+```
+
+This drops you into an R console with your project directory as the working directory. The `here` package will anchor to `falciparum/` if you have a `.here` sentinel file there:
+
+```bash
+touch ~/falciparum/.here
+```
+
+### Running an R script {#sec-rscript}
+
+To run a single script non-interactively:
+
+```bash
+apptainer exec --cleanenv --contain \
+    --bind /global/scratch/projects/co_carleton:/global/scratch/projects/co_carleton \
+    --bind /global/home/users/$USER/falciparum:/global/home/users/$USER/falciparum \
+    --pwd /global/home/users/$USER/falciparum \
+    $SIF Rscript scripts/B01_Predict_Prevalence.R
+```
+
+### SLURM batch jobs {#sec-slurm}
+
+For production runs, submit a SLURM script that wraps the Apptainer call:
+
+```{.bash filename="run_bootstrap.sh"}
+#!/bin/bash
+#SBATCH --job-name=malaria_bootstrap
+#SBATCH --account=co_carleton
+#SBATCH --partition=savio4_htc
+#SBATCH --qos=carleton_htc4_normal
+#SBATCH --time=08:00:00
+#SBATCH --cpus-per-task=12
+#SBATCH --mem=64G
+#SBATCH --output=logs/bootstrap_%j.out
+#SBATCH --error=logs/bootstrap_%j.err
+
+SIF=/global/scratch/projects/co_carleton/carleton_colab/software/apptainers/r-malaria-cru_4.2.3.sif
+
+apptainer exec --cleanenv --contain \
+    --bind /global/scratch/projects/co_carleton:/global/scratch/projects/co_carleton \
+    --bind /global/home/users/$USER/falciparum:/global/home/users/$USER/falciparum \
+    --pwd /global/home/users/$USER/falciparum \
+    $SIF Rscript scripts/E01_Bootstrap.R
+```
+
+Submit with:
+
+```bash
+mkdir -p logs
+sbatch run_bootstrap.sh
+```
+
+### SLURM job arrays {#sec-job-arrays}
+
+Job arrays are ideal when you need to run the same script across many iterations (e.g., 1,000 bootstrap replicates). SLURM sets the `SLURM_ARRAY_TASK_ID` environment variable, which your R script can read to determine which iteration to run.
+
+```{.bash filename="run_bootstrap_array.sh"}
+#!/bin/bash
+#SBATCH --job-name=bootstrap_array
+#SBATCH --account=co_carleton
+#SBATCH --partition=savio4_htc
+#SBATCH --qos=carleton_htc4_normal
+#SBATCH --time=02:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=32G
+#SBATCH --array=1-1000%50
+#SBATCH --output=logs/bootstrap_%A_%a.out
+#SBATCH --error=logs/bootstrap_%A_%a.err
+
+SIF=/global/scratch/projects/co_carleton/carleton_colab/software/apptainers/r-malaria-cru_4.2.3.sif
+
+apptainer exec --cleanenv --contain \
+    --bind /global/scratch/projects/co_carleton:/global/scratch/projects/co_carleton \
+    --bind /global/home/users/$USER/falciparum:/global/home/users/$USER/falciparum \
+    --pwd /global/home/users/$USER/falciparum \
+    --env SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID \
+    $SIF Rscript scripts/E01_Bootstrap.R
+```
+
+The `--array=1-1000%50` directive creates 1,000 tasks but limits concurrency to 50 at a time. Inside R, read the task ID with:
+
+```r
+task_id <- as.integer(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+```
+
+::: {.callout-note}
+Because `--cleanenv` strips host environment variables, you need to explicitly pass `SLURM_ARRAY_TASK_ID` into the container with `--env`.
+:::
+
+## Troubleshooting
+
+### `here()` starts at the wrong directory
+
+Make sure you are passing `--pwd` to set the working directory, and that the target path is also `--bind` mounted. Placing a `.here` file in your project root guarantees that the `here` package finds the right anchor point.
+
+### Packages not found inside the container
+
+If R cannot find a package, it is not installed in the `.sif` image. Add it to the Dockerfile, rebuild, push, and pull a new `.sif`. Container images are read-only on Savio — you cannot install packages into a running container.
+
+### Parallel workers fail with `--contain`
+
+With `--contain`, forked workers may not see paths that are not explicitly bound. Make sure every path your R scripts read from or write to is included in a `--bind` flag.
+
+### `future` workers crash in Positron / Ark
+
+If using `future` parallelism inside a Positron IDE session connected over SSH, the Ark kernel's `.ark_auto_step` function can leak into forked workers and cause errors. A workaround is to unset it before launching workers:
+
+```r
+if (exists(".ark_auto_step", envir = globalenv())) {
+    rm(".ark_auto_step", envir = globalenv())
+}
+
+plan(multicore, workers = 12)
+```

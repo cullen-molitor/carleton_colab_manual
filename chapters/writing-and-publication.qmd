@@ -1,0 +1,44 @@
+# Writing and Publication {#sec-writing}
+
+## The writing process
+
+Good research writing is iterative. A typical path from idea to published paper:
+
+1. **Exploratory analysis and notes** — informal, often in a Google Doc or notebook, focused on understanding the data and refining the research question.
+2. **Internal draft** — a structured document (usually LaTeX) shared with co-authors and lab members for feedback.
+3. **Seminar / conference presentation** — presenting early results to get external feedback before submission.
+4. **Submission draft** — polished manuscript formatted for the target journal.
+5. **Revise and resubmit** — responding to reviewer comments, updating analyses, and strengthening the argument.
+
+### Getting feedback
+
+- Share drafts early. A rough draft with a clear question is more useful to review than a polished draft that is headed in the wrong direction.
+- When asking for feedback, be specific about what kind of help you need: high-level framing, technical methods, writing clarity, or something else.
+- Circulate practice talks within the lab before presenting externally.
+
+## Authorship
+
+Authorship follows the norms of our field (economics). In general:
+
+- All co-authors should make substantive intellectual contributions to the paper.
+- Authorship order is typically discussed at the outset of a project and revisited as contributions evolve.
+- If you are unsure whether your contribution warrants authorship, talk to Tamma.
+- Research assistants who make significant analytical contributions should be offered co-authorship. Data collection or coding alone may not warrant authorship but should always be acknowledged.
+
+## Replication packages
+
+Every published paper from the lab should have a replication package that allows an independent researcher to reproduce all results. At minimum, a replication package includes:
+
+- All code, organized in execution order with a master script or README.
+- Processed data (or instructions for obtaining raw data if it cannot be redistributed).
+- A README describing the computing environment, dependencies, and step-by-step instructions.
+
+Many journals now require replication packages as a condition of publication. Even when they do not, we produce them as a matter of principle.
+
+## Pre-prints and open access
+
+We encourage posting working papers on pre-print servers (e.g., NBER, SSRN, or arXiv) to increase the reach and timeliness of our work. When a paper is published, check whether the journal allows self-archiving of the accepted manuscript and make it publicly available where possible.
+
+## Acknowledging funding and affiliations
+
+All publications and presentations should acknowledge relevant funding sources, CEGA affiliation, and the UC Berkeley Department of Agricultural & Resource Economics. Tamma can provide specific grant numbers and language.

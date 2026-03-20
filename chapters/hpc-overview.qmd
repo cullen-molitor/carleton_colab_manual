@@ -1,0 +1,88 @@
+# HPC Overview {#sec-hpc-overview}
+
+## What we have
+
+Our lab has been allocated significant computational resources on Berkeley's Savio HPC cluster:
+
+### Storage
+
+| Tier | Capacity | Notes |
+|------|----------|-------|
+| Home directory | 30 GB per user | Backed up regularly |
+| Group directory | 200 GB shared | Shared tools and configs |
+| Project directory | 112 TB | Primary lab data store |
+| Scratch | 9 PB (shared across campus) | **Not backed up** — purged after 60–90 days of inactivity |
+
+### Compute
+
+| Resource | Amount |
+|----------|--------|
+| Nodes | 4 |
+| CPUs per node | 56 |
+| RAM per node | 512 GB |
+| **Total** | **224 CPUs, 2 TB RAM** |
+
+## Glossary
+
+### Common acronyms
+
+| Acronym | Meaning |
+|---------|---------|
+| BRC | Berkeley Research Computing — the team who manages the HPC resources |
+| HPC | High Performance Computing |
+| CPU | Central Processing Unit |
+| GPU | Graphics Processing Unit |
+| RAM | Random Access Memory |
+| SSH | Secure Shell — protocol for remote access to Savio |
+| SLURM | Simple Linux Utility for Resource Management — the job scheduler |
+| QoS | Quality of Service — the queues available for different partitions |
+
+### HPC terms
+
+**Savio**
+: Berkeley's primary HPC system — a Linux cluster with 600+ nodes and 15,000+ processors.
+
+**Condo**
+: PIs can purchase hardware to contribute to the HPC, gaining priority access equivalent to the resources purchased.
+
+**Core**
+: One processing unit within a node (often used interchangeably with CPU in HPC contexts).
+
+**Node**
+: A single computer within the cluster, containing CPUs, memory, and local storage.
+
+**Partition**
+: A collection of nodes with similar properties or access policies.
+
+**Job**
+: A computational task submitted to the SLURM scheduler with specific resource requirements.
+
+**Walltime**
+: The maximum real-world time allowed for a job before the scheduler terminates it.
+
+**Open OnDemand**
+: A web-based interface for interactively using HPC resources.
+
+## Getting started checklist
+
+New lab members should complete the following before beginning work on Savio (this overlaps with the general onboarding in @sec-onboarding):
+
+- [ ] Review the [Savio documentation](https://docs-research-it.berkeley.edu/services/high-performance-computing/overview/)
+- [ ] Obtain a Savio account and join both lab projects (`fc_carleton2025` and `co_carleton`)
+- [ ] Set up two-factor authentication and configure your connection
+- [ ] Create your personal directory structure
+- [ ] Install [Globus Connect](https://www.globus.org/) for file transfers
+- [ ] Get Dropbox access as needed and learn to sync to/from Savio via Globus
+- [ ] Load and test standard lab environments (see @sec-containers)
+- [ ] Run a test job to verify access
+- [ ] Review the lab data registry
+- [ ] Add your contact info to the lab HPC user list
+
+### Requesting a BRC account
+
+There are two projects you must request access to:
+
+1. `fc_carleton2025`
+2. `co_carleton`
+
+Request access through the [MyBRC portal](https://mybrc.brc.berkeley.edu/).

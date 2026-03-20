@@ -1,0 +1,92 @@
+# HPC Storage {#sec-hpc-storage}
+
+This chapter covers the Savio-specific storage architecture. For general data management practices (version control, documentation, reproducibility), see @sec-data-code.
+
+## Directory structure
+
+### Home directories (30 GB per user) {#sec-home}
+
+**Path:** `/global/home/users/<your_username>`
+
+Your home directory is the right place for personal scripts, git repositories, job scripts, and software configuration files. Home directories are backed up regularly.
+
+::: {.callout-warning}
+Do **not** store large datasets, intermediate files, or anything you wish to share with the lab in your home directory.
+:::
+
+### Group directory (200 GB shared)
+
+**Path:** `/home/groups/co_carleton`
+
+The group directory is the central location for shared software and tools. The recommended layout is:
+
+```
+/home/groups/co_carleton/
+├── software/     # Shared Python envs, containers
+├── scripts/      # Common analysis scripts and workflows
+├── docs/         # Shared documentation and protocols
+└── configs/      # Shared configuration files
+```
+
+::: {.callout-note}
+This directory is not yet fully set up. Check the **#computing** Slack channel for updates.
+:::
+
+### Scratch space (9 PB shared across campus)
+
+Scratch is high-performance temporary storage ideal for active computations, intermediate results, and temporary large files.
+
+::: {.callout-important}
+Scratch is **not backed up**. Data can be purged after 60–90 days of inactivity. Move important results to permanent storage immediately after your job completes.
+:::
+
+### Project storage (112 TB allocation) {#sec-project-storage}
+
+**Path:** `/global/scratch/projects/co_carleton`
+
+This is the primary location for lab data. It is visible and accessible to all members of the `co_carleton` group.
+
+::: {.callout-tip}
+If you work with sensitive data, contact Tamma, Cullen, or the BRC team to discuss options — including the secure storage tier.
+:::
+
+The 112 TB allocation is shared with the department. Lab members must work within the `carleton_colab` subfolder:
+
+```
+/global/scratch/projects/co_carleton/
+├── department/
+│   └── ...
+└── carleton_colab/
+    ├── datasets/
+    │   ├── raw/
+    │   ├── processed/
+    │   └── shared/
+    └── projects/
+        └── project_name/
+            ├── data/
+            ├── results/
+            └── analysis/
+```
+
+### Secure storage (1 TB allocation)
+
+**Paths:**
+
+- `/global/home/groups/pl1data/pl1_co_carleton_secure`
+- `/global/scratch/p2p3/pl1_co_carleton_secure`
+
+For data that must meet strict encryption regulations or requirements. Not yet set up.
+
+## Avoiding duplication on Savio
+
+112 TB sounds like a lot, but large geospatial datasets fill it up fast. Before downloading a new dataset (e.g., ERA5, CHIRPS, CRU), post in **#computing** on Slack to check whether someone already has it. If the dataset might be useful to others, place it in `carleton_colab/datasets/` rather than inside your project folder. Use symbolic links from project directories to avoid maintaining multiple copies.
+
+## Backups
+
+Only home directories are backed up. For critical data, consider maintaining external backups via cloud services or local drives.
+
+## Shared dataset best practices
+
+- Set appropriate group permissions on shared files.
+- Keep the lab data registry up to date with dataset location, owner, permissions, size, and creation date.
+- Every dataset should include a README describing its source, collection date, processing steps, file formats, and naming conventions.

@@ -1,0 +1,34 @@
+# Offboarding {#sec-offboarding}
+
+When you leave the lab — whether moving on to a new position, graduating, or completing a contract — please work through the following steps to ensure a smooth transition.
+
+## Knowledge transfer
+
+- [ ] Document the current state of any projects you are involved in. Write up what is done, what is in progress, and what remains.
+- [ ] Make sure all code is committed, pushed, and working on the main branch of the relevant GitHub repositories. Include a clear README.
+- [ ] Update or create documentation for any pipelines, scripts, or tools that only you know how to run.
+- [ ] Schedule a handoff meeting with the person taking over your work (or with Tamma / the lab manager if no successor is identified yet).
+
+## Data and files
+
+- [ ] Move any important results from scratch storage to the project directory on Savio (scratch is purged after inactivity).
+- [ ] Ensure shared datasets you created or maintained are in the correct location with a README (see @sec-project-storage).
+- [ ] Remove personal files from shared storage. Clean up your home directory on Savio.
+- [ ] Transfer any files from your local machine that the lab needs to Google Drive or the project directory.
+
+## Accounts and access
+
+- [ ] Return any university-issued equipment (laptop, monitor, keys, Cal 1 Card).
+- [ ] Your BRC/Savio access will be deactivated when your campus affiliation ends. Make sure nothing critical depends solely on your account.
+- [ ] Leave Slack channels gracefully — post a farewell in **#general** if you like.
+- [ ] Update your contact information with the lab so we can stay in touch.
+
+## Exit conversation
+
+Before your last day, schedule a short conversation with Tamma to discuss:
+
+- What went well during your time in the lab
+- What could be improved
+- How the lab can support you going forward (letters of recommendation, references, future collaboration)
+
+We want every lab member to leave feeling good about their experience and well positioned for what comes next.

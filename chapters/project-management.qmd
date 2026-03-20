@@ -1,0 +1,58 @@
+# Project Management {#sec-project-management}
+
+## Starting a new project
+
+Every new project should begin with a brief scoping conversation that addresses:
+
+- **Research question**: What are we trying to learn?
+- **Data requirements**: What data do we need, and do we have access?
+- **Methods**: What analytical approach will we use?
+- **Timeline**: What are the key milestones and deadlines?
+- **Roles**: Who is responsible for what? (see @sec-expectations for role definitions)
+- **Partners**: Are there external collaborators or policy partners involved? What are their expectations?
+
+### Setting up project infrastructure
+
+Once a project is scoped, create the following:
+
+1. **GitHub repository** in the lab organization. Use the lab's repo template if one exists.
+2. **Project folder** on Savio at `/global/scratch/projects/co_carleton/carleton_colab/projects/<project_name>/` (see @sec-project-storage).
+3. **Google Drive folder** inside the lab shared drive for non-code deliverables (literature, slide decks, partner communications).
+4. **Slack channel** named `#proj-<short-name>` for project-specific discussion.
+
+## Running a project
+
+### Weekly check-ins
+
+Most active projects benefit from a short weekly sync — 15 to 30 minutes — to review progress, surface blockers, and adjust priorities. Keep these meetings focused. A standing agenda helps:
+
+1. What got done since last time?
+2. What is blocked?
+3. What are the priorities for this week?
+
+### Documentation as you go
+
+Write documentation while the work is fresh, not after the project is done. At minimum:
+
+- Keep a `README.md` in every repository with setup instructions and a brief description of the pipeline.
+- Comment non-obvious code.
+- Log major decisions and their rationale somewhere accessible (a project Google Doc, a `NOTES.md` in the repo, or Slack).
+
+### Partner engagement
+
+Many of our projects involve government or NGO partners. When working with external partners:
+
+- Respect data agreements and confidentiality constraints.
+- Communicate in plain language — avoid jargon.
+- Set realistic expectations about timelines and deliverables.
+- Share results early and often, not just at the end.
+
+## Wrapping up a project
+
+Before a project is considered complete:
+
+- [ ] All code is documented, tested, and pushed to GitHub.
+- [ ] Final datasets and results are stored in the project directory on Savio with a README.
+- [ ] A replication package exists (or can be assembled) for any published paper.
+- [ ] Intermediate and scratch files have been cleaned up.
+- [ ] A short retrospective conversation is held: what worked, what did not, what would we do differently?
