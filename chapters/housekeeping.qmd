@@ -51,6 +51,6 @@ The lab's physical space is in the ARE department. Desk assignments and office a
 
 Most purchases go through the department and require a funding source (chartstring). Do not buy items on your personal card expecting reimbursement without prior approval.
 
-For everyday requests — office supplies, shared snacks, coffee, kitchen items, printer toner, etc. — submit a request through the **[Lab Supply Request Form](https://docs.google.com/forms/d/e/PLACEHOLDER/viewform)**. The lab manager checks the form regularly and will coordinate purchasing or let you know if there are questions.
+For everyday requests — office supplies, shared snacks, coffee, kitchen items, printer toner, etc. — submit a request through the **[Lab Supply Request Form](https://forms.gle/qVU1p8TAHsZAeLsQ9)**. The lab manager checks the form regularly and will coordinate purchasing or let you know if there are questions.
 
 For larger purchases (software licenses, cloud compute credits, equipment, books), talk to Tamma or the lab manager directly before submitting anything. These typically require additional approval and a specific funding source.
